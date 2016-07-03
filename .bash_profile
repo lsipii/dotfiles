@@ -85,7 +85,7 @@ if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
 
 else
 
-	# show root@ when we do not have colors
+    # show root@ when we do not have colors
 
 	PS1="\u@\h \w \$([[ \$? != 0 ]] && echo \":( \")\$ "
 
@@ -116,18 +116,11 @@ LESS_TERMCAP_so=$'\E[38;5;246m' \
 LESS_TERMCAP_ue=$'\E[0m' \
 LESS_TERMCAP_us=$'\E[04;38;5;146m' \
 
-export FBFONT=/usr/share/kbd/consolefonts/ter-216n.psf.gz
-export PATH="$PATH:/opt/vc/bin/"
-export PATH="$PATH:/home/lsipii/.composer/vendor/bin/"
-export PATH="$PATH:/home/lsipii/bin/"
-
-alias sshaarium="ssh -i /home/lsipii/Private/aws/fokua-aws-frankfurt.pem ec2-user@aarium.com"
-alias sftpaarium="sftp -i /home/lsipii/Private/aws/fokua-aws-frankfurt.pem ec2-user@aarium.com"
-
-SESSION_TYPE="term";
-if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
-	SESSION_TYPE="tmux";
+if [ -f ~/.local_profile ]; then
+    . ~/.local_profile
 fi
+
+SESSION_TYPE="$TERM";
 
 case $(ps -o comm= -p $PPID) in
     sshd|*/sshd) SESSION_TYPE="ssh";;
@@ -135,4 +128,5 @@ esac
 if [ $SESSION_TYPE == "term" ]; then            
         setterm -blank 0
 fi
+
 fortune
