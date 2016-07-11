@@ -1,7 +1,15 @@
 #!/bin/bash
 ## Links to home with some path assumptions
+FILES=".vim
+.vimrc
+.tmux.conf
+.bash_profile
+";
+SCRIPTSDIR=`dirname "$BASH_SOURCE"`
 
-ln -s ~/dotfiles/.vim ~/.vim
-ln -s ~/dotfiles/.vimrc ~/.vimrc
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/.bash_profile ~/.bash_profile
+for SYMLINK in $FILES
+do		
+	if [ ! -e ~/$SYMLINK ]; then
+		ln -s $SCRIPTSDIR/$SYMLINK ~/$SYMLINK
+	fi
+done
