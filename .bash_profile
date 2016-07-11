@@ -129,4 +129,4 @@ if [ $SESSION_TYPE == "term" ]; then
         setterm -blank 0
 fi
 
-fortune
+fortune | cowsay -f moofasa
