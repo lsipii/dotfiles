@@ -3,7 +3,6 @@
 FILES=".vim
 .vimrc
 .tmux.conf
-.bash_profile
 ";
 SCRIPTSDIR=`dirname "$BASH_SOURCE"`
 
@@ -13,3 +12,14 @@ do
 		ln -s $SCRIPTSDIR/$SYMLINK ~/$SYMLINK
 	fi
 done
+
+## Extend .bash_profile
+if [ -f ~/.bash_profile ]; then
+	if [ ! grep "BASH_PROFILE_IS_EXTENDED" ~/.bash_profile > /dev/null ]; then
+		cat $SCRIPTSDIR/.bash_profile_ext >> ~/.bash_profile
+	fi
+else
+	touch ~/.bash_profile
+	echo '#!/bin/bash' > ~/.bash_profile
+	cat $SCRIPTSDIR/.bash_profile_ext >> ~/.bash_profile
+fi

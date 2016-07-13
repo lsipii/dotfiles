@@ -1,0 +1,22 @@
+
+## Variable that says profile's been extended
+BASH_PROFILE_IS_EXTENDED=true
+
+## Term setups
+SESSION_TYPE="$TERM";
+case $(ps -o comm= -p $PPID) in
+    sshd|*/sshd) SESSION_TYPE="ssh";;
+esac
+if [ $SESSION_TYPE == "term" ]; then            
+        setterm -blank 0
+fi
+
+## Cow says fortune
+if [ -x "$(command -v fortune)" ]; then
+	
+	if [ -x "$(command -v fortune)" ]; then
+		fortune	| cowsay -f moofasa
+	else
+		fortune
+	fi
+fi
