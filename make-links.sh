@@ -21,5 +21,10 @@ if [ -f ~/.bash_profile ]; then
 else
 	touch ~/.bash_profile
 	echo '#!/bin/bash' > ~/.bash_profile
+	echo '
+	if [ -f ~/.bashrc ]; then
+	   source ~/.bashrc
+	fi
+	' >> ~/.bash_profile
 	cat $SCRIPTSDIR/.bash_profile_ext >> ~/.bash_profile
 fi
