@@ -18,6 +18,10 @@ if [ -f ~/.bash_profile ]; then
 	if ! grep -q "BASH_PROFILE_IS_EXTENDED" ~/.bash_profile; then
 		cat $SCRIPTSDIR/.bash_profile_ext >> ~/.bash_profile
 	fi
+elif [ -f ~/.profile ]; then
+	if ! grep -q "BASH_PROFILE_IS_EXTENDED" ~/.profile; then
+		cat $SCRIPTSDIR/.bash_profile_ext >> ~/.profile
+	fi
 else
 	touch ~/.bash_profile
 	echo '#!/bin/bash' > ~/.bash_profile
