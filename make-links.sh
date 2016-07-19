@@ -15,7 +15,7 @@ done
 
 ## Extend .bash_profile
 if [ -f ~/.bash_profile ]; then
-	if [ ! grep "BASH_PROFILE_IS_EXTENDED" ~/.bash_profile > /dev/null ]; then
+	if ! grep -q "BASH_PROFILE_IS_EXTENDED" ~/.bash_profile; then
 		cat $SCRIPTSDIR/.bash_profile_ext >> ~/.bash_profile
 	fi
 else
