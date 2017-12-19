@@ -1,0 +1,4 @@
+*.sublime-workspace
+.bash_it
+.vim/*
+!.vim/.gitkeep

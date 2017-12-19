@@ -13,10 +13,7 @@ export DISPLAY=:0
 ###
 # Create or attach to tmux
 ###
-if [ ! -n "$TMUX" ]; then
-    tmux attach || tmux new
-else
-
+if [ -n "$TMUX" ]; then
 	###
 	# Cow says fortune
 	###

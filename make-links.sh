@@ -22,15 +22,16 @@ done
 ###
 # Install vim base16 theme
 ###
-if [ ! -d .vim/colors/base16 ]; then
-	git clone https://github.com/chriskempson/base16-vim.git .vim/colors/base16
+if [ ! -d $SCRIPTSDIR/.vim/colors/base16 ]; then
+	git clone https://github.com/chriskempson/base16-vim.git $SCRIPTSDIR/.vim/colors/base16
 fi
 
 ###
 # Install bashit
 ###
 if [ ! -d ~/.bash_it ]; then
-	git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+	git clone --depth=1 https://github.com/Bash-it/bash-it.git $SCRIPTSDIR/.bash_it
+	ln -s $SCRIPTSDIR/.bash_it ~/.bash_it
 	~/.bash_it/install.sh --silent
 
 	# Change bashit theme to rjorgenson
