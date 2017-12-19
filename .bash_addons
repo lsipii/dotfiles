@@ -1,0 +1,27 @@
+###
+# Add local bin to path
+###
+if [ -d ~/bin ]; then
+	export PATH="$PATH:~/bin"
+fi
+
+###
+# Display to xorg, xwing, ming
+###
+export DISPLAY=:0
+
+###
+# Create or attach to tmux
+###
+if [ ! -n "$TMUX" ]; then
+    tmux attach || tmux new
+else
+
+	###
+	# Cow says fortune
+	###
+	if [[ -x $(command -v fortune) && $(command -v cowsay) && $(command -v lolcat) ]]; then
+		fortune	| cowsay -f moofasa | lolcat
+	fi
+
+fi
