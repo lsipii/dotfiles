@@ -4,8 +4,7 @@
 ###
 # Link vim and tmux and other configuration files
 ##
-FILES=".vim
-.vimrc
+FILES=".vimrc
 .tmux.conf
 .bash_aliases
 .bash_addons
@@ -18,13 +17,6 @@ do
 		ln -s $SCRIPTSDIR/$SYMLINK ~/$SYMLINK
 	fi
 done
-
-###
-# Install vim base16 theme
-###
-if [ ! -d $SCRIPTSDIR/.vim/colors/base16 ]; then
-	git clone https://github.com/chriskempson/base16-vim.git $SCRIPTSDIR/.vim/colors/base16
-fi
 
 ###
 # Install bashit
