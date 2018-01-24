@@ -1,4 +1,4 @@
 *.sublime-workspace
 .bash_it
-.vim/*
-!.vim/.gitkeep
+secrets/*
+!secrets/*.sh
