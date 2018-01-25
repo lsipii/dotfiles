@@ -10,4 +10,4 @@ set incsearch
 set hlsearch
 
 set background=dark
-colorscheme base16-ocean
+colorscheme elflord
