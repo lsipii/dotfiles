@@ -60,3 +60,14 @@ if [[ ! $(grep -Fxq "source ~/.bash_addons" ~/.bashrc) ]]; then
 	fi
 	' >> ~/.bashrc
 fi
+
+# bash_appends include to bashrc
+if [[ ! $(grep -Fxq "source ~/.bash_appends" ~/.bashrc) ]]; then
+	echo '
+	if [ -f ~/.bash_appends ]; then
+	   source ~/.bash_appends
+	fi
+	' >> ~/.bashrc
+fi
+
+
