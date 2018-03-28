@@ -40,7 +40,7 @@ do
 	#chmod -R 600 ${LINK_DEST}/${SYMLINK}
 
 	# Create new, throw error if exists
-	ln -s ${LINK_DEST}/${SYMLINK} ~/${SYMLINK} || exit 1
+	ln -s ${LINK_DEST}/${SYMLINK} ~/${SYMLINK}
 done
 
 # Link subfolder links
@@ -82,7 +82,7 @@ do
 			fi	
 
 			# Create new, throw error if exists
-			cp ${LINK_DEST}/${SYMLINKDIR}/${SYMLINKFILE} ~/${SYMLINKDIR}/${SYMLINKFILE} || exit 1
+			cp ${LINK_DEST}/${SYMLINKDIR}/${SYMLINKFILE} ~/${SYMLINKDIR}/${SYMLINKFILE}
 
 			# Ensure some very secret permission levels
 			chmod 600 ~/${SYMLINKDIR}/${SYMLINKFILE}
@@ -100,6 +100,6 @@ do
 		# chmod -R 600 ${LINK_DEST}/${SYMLINKDIR}/${SYMLINKFILE}
 
 		# Create new, throw error if exists
-		ln -s ${LINK_DEST}/${SYMLINKDIR}/${SYMLINKFILE} ~/${SYMLINKDIR}/${SYMLINKFILE} || exit 1
+		ln -s ${LINK_DEST}/${SYMLINKDIR}/${SYMLINKFILE} ~/${SYMLINKDIR}/${SYMLINKFILE}
 	done
 done
