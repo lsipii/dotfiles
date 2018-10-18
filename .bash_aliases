@@ -27,8 +27,8 @@ fi
 function log() {
     DATERNA=`date +%Y-%m-%d`
     clear;
-    if [ ! -f ~/Projects/aarium/storage/logs/fokua-$DATERNA.log ]; then
-        touch ~/Projects/aarium/storage/logs/fokua-$DATERNA.log
+    if [ ! -f ~/Projects/aarium/storage/logs/aarium_www-data-$DATERNA.log ]; then
+        touch ~/Projects/aarium/storage/logs/aarium_www-data-$DATERNA.log
     fi
-    tail -f ~/Projects/aarium/storage/logs/fokua-$DATERNA.log
+    tail -f ~/Projects/aarium/storage/logs/aarium_www-data-$DATERNA.log
 }
