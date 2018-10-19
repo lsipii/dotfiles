@@ -13,8 +13,11 @@ export DISPLAY=:0
 ###
 # Create or attach to tmux
 ###
-if [ -n "$TMUX" ]; then
-	###
+tmux has-session -t "primary" 2>/dev/null
+if [ "$?" -eq 1 ]; then
+    tmux new -s primary
+else
+    ###
 	# Cow says fortune
 	###
 	if [[ -x $(command -v fortune) && $(command -v cowsay) && $(command -v lolcat) ]]; then

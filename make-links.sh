@@ -26,8 +26,8 @@ if [ ! -d ~/.bash_it ]; then
 	ln -s $SCRIPTSDIR/.bash_it ~/.bash_it
 	~/.bash_it/install.sh --silent
 
-	# Change bashit theme to rjorgenson
-	sed -i "s/export BASH_IT_THEME='bobby'/export BASH_IT_THEME='rjorgenson'/g" ~/.bashrc
+	# Change bashit theme to bakke
+	sed -i "s/export BASH_IT_THEME='bobby'/export BASH_IT_THEME='bakke'/g" ~/.bashrc
 fi
 
 ###
