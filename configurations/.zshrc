@@ -92,6 +92,17 @@ plugins=(
 )
 
 ###
+# zsh jovial theme
+###
+
+# Jovia theme and plugin
+if [ ! -f ${HOME}/.oh-my-zsh/custom/themes/jovial.zsh-theme ]; then 
+    echo "Installing zsh jovial theme.."
+    curl -sSL -H 'Cache-Control: no-cache' https://github.com/zthxxx/jovial/raw/master/jovial.zsh-theme -o ${HOME}/.oh-my-zsh/custom/themes/jovial.zsh-theme
+    curl -sSL -H 'Cache-Control: no-cache' https://github.com/zthxxx/jovial/raw/master/jovial.plugin.zsh -o ${HOME}/.oh-my-zsh/custom/plugins/jovial.plugin.zsh
+fi
+
+###
 # Pre-init
 ###
 if [ -f "${HOME}/.zshrc.local" ]; then 
@@ -136,15 +147,8 @@ source $ZSH/oh-my-zsh.sh
 eval `dircolors ~/.dircolors`
 
 ###
-# zsh jovial theme and custom promt icons
+# zsh jovial theme custom promt icons
 ###
-
-# Jovia theme and plugin
-if [ ! -f ${HOME}/.oh-my-zsh/custom/themes/jovial.zsh-theme ]; then 
-    echo "Installing zsh jovial theme.."
-    curl -sSL -H 'Cache-Control: no-cache' https://github.com/zthxxx/jovial/raw/master/jovial.zsh-theme -o ${HOME}/.oh-my-zsh/custom/themes/jovial.zsh-theme
-    curl -sSL -H 'Cache-Control: no-cache' https://github.com/zthxxx/jovial/raw/master/jovial.plugin.zsh -o ${HOME}/.oh-my-zsh/custom/plugins/jovial.plugin.zsh
-fi
 
 # https://github.com/mintty/wsltty/issues/93#issuecomment-366135476
 EMOJI=(🚀 🐧 🐳 💎 🍄 🐒 😻 🦄 🐪 🐢 🌷 🌍 🥘 🌈 🙉 🥇 🏆 🌞 🪐 🌙 🥃 🥂 🍻 🍺 🍸 🍩 🎂 🍜 🍣 🥡 🧂 🥙 🧆 🥪 🍕 🌭 🧀 🥞 🥖 🥐 🌶 🥑 🍆 🥔)
