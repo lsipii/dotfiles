@@ -3,7 +3,7 @@
 SCRIPTS_DIR=$(realpath ${0%/*}/..)
 CONFIGURATIONS_DIR="${SCRIPTS_DIR}/configurations"
 
-if [ -f ${HOME}/.zshrc ] && [ ! -e ${HOME}/.zshrc ]; then
+if [ -e ${HOME}/.zshrc ] && [ ! -L ${HOME}/.zshrc ]; then
 	mv ${HOME}/.zshrc ${HOME}/.zshrc.pre-script-install
 fi
 
@@ -16,10 +16,10 @@ for SYMLINK_FILEPATH in ${CONFIGURATIONS_DIR}/.*; do
     fi
 
     echo -n "Checking ${SYMLINK_FILE} .. "
-	if [ ! -e ${HOME}/${SYMLINK_FILE} ]; then
+	if [ ! -L ${my_link} ] || [ ! -e ${my_link} ]; then
 		if [ -f ${HOME}/${SYMLINK_FILE} ] || [ -d ${HOME}/${SYMLINK_FILE} ]; then
-			echo "> Filepath already exists: ${HOME}/${SYMLINK_FILE}"
-			continue;
+			mv ${HOME}/${SYMLINK_FILE} ${HOME}/${SYMLINK_FILE}.pre-script-install
+			echo "> Created a backup: ${HOME}/${SYMLINK_FILE}.pre-script-install"
 		fi
 		ln -s ${CONFIGURATIONS_DIR}/${SYMLINK_FILE} ${HOME}/${SYMLINK_FILE} && echo "> Made a new link: ${HOME}/${SYMLINK_FILE}"
 	else
