@@ -11,15 +11,14 @@ for SYMLINK_FILEPATH in ${CONFIGURATIONS_DIR}/.*; do
         continue;
     fi
 
-    echo -n "Checking ${SYMLINK_FILE}.. "
-	if [ -f ${CONFIGURATIONS_DIR}/${SYMLINK_FILE} ]; then
-		if [ ! -e ${HOME}/${SYMLINK_FILE} ]; then
-			ln -s ${CONFIGURATIONS_DIR}/${SYMLINK_FILE} ${HOME}/${SYMLINK_FILE} 
-			echo -n "> Made a new link: ${HOME}/${SYMLINK_FILE}\n"
-		else
-			echo -n "> Link already exists: ${HOME}/${SYMLINK_FILE}\n"	
+    echo -n "Checking ${SYMLINK_FILE} .. "
+	if [ ! -e ${HOME}/${SYMLINK_FILE} ]; then
+		if [ -f ${HOME}/${SYMLINK_FILE} ] || [ -d ${HOME}/${SYMLINK_FILE} ]; then
+			echo "> Filepath already exists: ${HOME}/${SYMLINK_FILE}"
+			continue;
 		fi
-    else
-        echo -n "> Invalid source file. \n"
+		ln -s ${CONFIGURATIONS_DIR}/${SYMLINK_FILE} ${HOME}/${SYMLINK_FILE} && echo "> Made a new link: ${HOME}/${SYMLINK_FILE}"
+	else
+		echo "> Link already exists"
 	fi
 done
