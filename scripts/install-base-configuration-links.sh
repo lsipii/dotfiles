@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @lsipii dotfiles links installer
-SCRIPTSDIR=$(realpath ${0%/*}/..)
-CONFIGURATIONS_DIR="${SCRIPTSDIR}/configurations"
+SCRIPTS_DIR=$(realpath ${0%/*}/..)
+CONFIGURATIONS_DIR="${SCRIPTS_DIR}/configurations"
 
 # Links dotfiles of configurations dir to home dir
 for SYMLINK_FILEPATH in ${CONFIGURATIONS_DIR}/.*; do		
