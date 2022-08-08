@@ -12,7 +12,7 @@ for SYMLINK_FILEPATH in ${CONFIGURATIONS_DIR}/.*; do
     fi
 
     echo -n "Checking ${SYMLINK_FILE} .. "
-	if [ ! -L ${my_link} ] && [ ! -e ${my_link} ]; then
+	if [ ! -L ${HOME}/${SYMLINK_FILE} ] || [ ! -e ${HOME}/${SYMLINK_FILE} ]; then
 		if [ -f ${HOME}/${SYMLINK_FILE} ] || [ -d ${HOME}/${SYMLINK_FILE} ]; then
 			mv ${HOME}/${SYMLINK_FILE} ${HOME}/${SYMLINK_FILE}.pre-script-install
 			echo "> Created a backup: ${HOME}/${SYMLINK_FILE}.pre-script-install"
