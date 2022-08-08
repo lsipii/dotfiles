@@ -3,7 +3,9 @@
 SCRIPTS_DIR=$(realpath ${0%/*}/..)
 CONFIGURATIONS_DIR="${SCRIPTS_DIR}/configurations"
 
-[ -f ${HOME}/.zshrc ] && [ ! -e ${HOME}/.zshrc ] && mv ${HOME}/.zshrc ${HOME}/.zshrc.pre-script-install
+if [ -f ${HOME}/.zshrc ] && [ ! -e ${HOME}/.zshrc ]; then
+	mv ${HOME}/.zshrc ${HOME}/.zshrc.pre-script-install
+fi
 
 # Links dotfiles of configurations dir to home dir
 for SYMLINK_FILEPATH in ${CONFIGURATIONS_DIR}/.*; do		
