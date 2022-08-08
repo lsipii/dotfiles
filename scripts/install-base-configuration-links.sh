@@ -3,10 +3,6 @@
 SCRIPTS_DIR=$(realpath ${0%/*}/..)
 CONFIGURATIONS_DIR="${SCRIPTS_DIR}/configurations"
 
-if [ -e ${HOME}/.zshrc ] && [ ! -L ${HOME}/.zshrc ]; then
-	mv ${HOME}/.zshrc ${HOME}/.zshrc.pre-script-install
-fi
-
 # Links dotfiles of configurations dir to home dir
 for SYMLINK_FILEPATH in ${CONFIGURATIONS_DIR}/.*; do		
 	SYMLINK_FILE=$(basename ${SYMLINK_FILEPATH})
@@ -16,7 +12,7 @@ for SYMLINK_FILEPATH in ${CONFIGURATIONS_DIR}/.*; do
     fi
 
     echo -n "Checking ${SYMLINK_FILE} .. "
-	if [ ! -L ${my_link} ] || [ ! -e ${my_link} ]; then
+	if [ ! -L ${my_link} ] && [ ! -e ${my_link} ]; then
 		if [ -f ${HOME}/${SYMLINK_FILE} ] || [ -d ${HOME}/${SYMLINK_FILE} ]; then
 			mv ${HOME}/${SYMLINK_FILE} ${HOME}/${SYMLINK_FILE}.pre-script-install
 			echo "> Created a backup: ${HOME}/${SYMLINK_FILE}.pre-script-install"
