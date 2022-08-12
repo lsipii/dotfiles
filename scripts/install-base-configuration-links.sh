@@ -3,6 +3,9 @@
 SCRIPTS_DIR=$(realpath ${0%/*}/..)
 CONFIGURATIONS_DIR="${SCRIPTS_DIR}/configurations"
 
+OPERATION="${1}" || "install"
+
+
 # Links dotfiles of configurations dir to home dir
 for SYMLINK_FILEPATH in ${CONFIGURATIONS_DIR}/.*; do		
 	SYMLINK_FILE=$(basename ${SYMLINK_FILEPATH})
@@ -17,7 +20,12 @@ for SYMLINK_FILEPATH in ${CONFIGURATIONS_DIR}/.*; do
 			mv ${HOME}/${SYMLINK_FILE} ${HOME}/${SYMLINK_FILE}.pre-script-install
 			echo "> Created a backup: ${HOME}/${SYMLINK_FILE}.pre-script-install"
 		fi
-		ln -s ${CONFIGURATIONS_DIR}/${SYMLINK_FILE} ${HOME}/${SYMLINK_FILE} && echo "> Made a new link: ${HOME}/${SYMLINK_FILE}"
+
+		if [ "${OPERATION}" == "install" ]; then
+			ln -s ${CONFIGURATIONS_DIR}/${SYMLINK_FILE} ${HOME}/${SYMLINK_FILE} && echo "> Made a new link: ${HOME}/${SYMLINK_FILE}"
+		else
+			rm ${HOME}/${SYMLINK_FILE} && echo "> Removed old link: ${HOME}/${SYMLINK_FILE}"
+		fi
 	else
 		echo "> Link already exists"
 	fi
