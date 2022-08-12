@@ -195,50 +195,9 @@ fi
 ###
 # Aliases, funcs, etc.
 ###
-
-# My ip
-function myip() {
-    dig +short myip.opendns.com @resolver1.opendns.com
-}
-
-# download a dir
-function downloadAllOfUrl() {
-    wget -r -np -R "index.html*" ${1}
-}
-
-# netstat
-alias netstat="sudo lsof -i -P -n"
-# ifconfig
-alias ifconfig="ip -c a | sed -e 's/\// \//g'"
-
-# Moofasa
-function moofasa() {
-    if [ -z "$@" ]; then
-        /usr/games/fortune | /usr/games/cowsay -f moofasa | /usr/games/lolcat
-    else
-        echo "$@" | /usr/games/cowsay -f moofasa | /usr/games/lolcat
-    fi
-}
-
-# Major count
-function count-exeduke() {
-    local COUNT="$1"
-    local ACTIONS=("${@:2}")
-    if [ -z "${COUNT}" ]; then
-        COUNT="10"
-    fi
-    if [ ${#arr[@]} -lt 1 ]; then
-        echo "No actions provided"
-        exit 1
-    fi
-    termdown "${COUNT}" && eval "${ACTIONS[@]}"
-}
-
-# Clean unused docker images and conts
-function docker-cleanup(){
-    docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
-    docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
-} 
+if [ -f "${HOME}/.zshrc.aliases" ]; then 
+    source "${HOME}/.zshrc.aliases"
+fi
 
 ###
 # Post-init
