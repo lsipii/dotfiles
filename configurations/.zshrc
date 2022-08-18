@@ -89,6 +89,7 @@ plugins=(
   autojump
   tmux
   asdf
+  pass
 )
 
 ###
