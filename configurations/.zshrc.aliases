@@ -54,4 +54,7 @@ function count-exeduke() {
 function docker-cleanup(){
     docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
     docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
-} 
+}
+
+# ruuviget
+alias ruuviget="docker compose --project-directory ~/Projects/ruuviget run commandline-client"
