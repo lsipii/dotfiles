@@ -204,9 +204,6 @@ fi
 # Post-init
 ###
 
-# Ensure home
-cd
-
 if [ -f "${HOME}/.zshrc.local-post-init" ]; then 
     source "${HOME}/.zshrc.local-post-init"
 fi
