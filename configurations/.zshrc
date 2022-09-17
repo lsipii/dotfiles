@@ -184,14 +184,32 @@ export N_PREFIX=$HOME/.local
 if [ -f ${HOME}/Projects/witdev/shell-commands.sh ]; then
     source ${HOME}/Projects/witdev/shell-commands.sh
 fi
+
 # Install asdf
 if [ ! -d ~/.asdf ]; then
     echo "Installing asdf.."
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 fi
+
 # Ensure gopath
 [[ -d /usr/local/go/bin ]] && export PATH=$PATH:/usr/local/go/bin
 
+
+# Install and setup pyenv
+if [ ! -d ~/.pyenv ]; then
+    echo "Installing pyenv.."
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+fi
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# Install and setup pulumi
+if [ ! -d ~/.pulumi ]; then
+    echo "Installing pulumi.."
+    curl -fsSL https://get.pulumi.com | sh
+fi
+export PATH=$PATH:$HOME/.pulumi/bin
 
 ###
 # Aliases, funcs, etc.
