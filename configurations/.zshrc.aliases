@@ -13,6 +13,12 @@ alias netstat="sudo lsof -i -P -n"
 # ifconfig
 alias ifconfig="ip -c a | sed -e 's/\// \//g'"
 
+# local http serv on current folder
+function web() {
+    echo "Running web at http://localhost:8090"
+    docker run -v `pwd`:/usr/share/nginx/html --rm -p 8090:80 nginx
+}
+
 # Moofasa
 function moofasa() {
     if [ -z "$@" ]; then
