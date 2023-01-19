@@ -174,6 +174,7 @@ if [ -d ~/.yarn/bin ]; then
     path+=~/.yarn/bin
 fi
 
+
 # nodejs n-tool env
 export N_PREFIX=$HOME/.local
 
@@ -200,9 +201,10 @@ if [ ! -d ~/.pyenv ]; then
     echo "Installing pyenv.."
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 fi
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+
+#export PYENV_ROOT="$HOME/.pyenv"
+#command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
 
 # Install and setup pulumi
 if [ ! -d ~/.pulumi ]; then
