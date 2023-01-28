@@ -19,6 +19,15 @@ function web() {
     docker run -v `pwd`:/usr/share/nginx/html --rm -p 8090:80 nginx
 }
 
+# browser
+function browse() {
+    if [ -z "$1" ]; then
+        echo "Usage: browse <url>"
+        return
+    fi
+    docker run -ti fathyb/carbonyl $1
+}
+
 # Moofasa
 function moofasa() {
     if [ -z "$@" ]; then
