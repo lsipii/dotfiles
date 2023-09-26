@@ -59,7 +59,7 @@ ZSH_THEME="jovial"
 
 ZSH_DISABLE_COMPFIX=true
 
-# Check ifwre coming from ssh
+# Check if wre coming from ssh
 SESSION_TYPE="local/sh"
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   SESSION_TYPE="remote/ssh"
@@ -68,13 +68,6 @@ else
     sshd|*/sshd) SESSION_TYPE="remote/ssh";;
   esac
 fi
-
-# Autostart tmux only locally and if non-attached
-#if [ "$SESSION_TYPE" = "local/sh" ]; then 
-#	if [ -z "$(tmux ls | grep attached)" ]; then
-#    	ZSH_TMUX_AUTOSTART=true
-#	fi
-#fi
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -106,8 +99,8 @@ fi
 ###
 # Pre-init
 ###
-if [ -f "${HOME}/.zshrc.local" ]; then 
-    source "${HOME}/.zshrc.local"
+if [ -f "${HOME}/.zshrc.local-pre-init" ]; then 
+    source "${HOME}/.zshrc.local-pre-init"
 fi
 
 ###
@@ -173,18 +166,15 @@ fi
 if [ -d ~/.yarn/bin ]; then
     path+=~/.yarn/bin
 fi
-
+if [ -d ~/.dotnet/tools ]; then
+    path+=~/.dotnet/tools
+fi
 
 # nodejs n-tool env
 export N_PREFIX=$HOME/.local
 
 # wtfutil environment
 [[ -f ~/.config/wtf/.env ]] && source ~/.config/wtf/.env
-
-# Witdev
-if [ -f ${HOME}/Projects/witdev/shell-commands.sh ]; then
-    source ${HOME}/Projects/witdev/shell-commands.sh
-fi
 
 # Install asdf
 if [ ! -d ~/.asdf ]; then
@@ -201,17 +191,14 @@ if [ ! -d ~/.pyenv ]; then
     echo "Installing pyenv.."
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 fi
-
-#export PYENV_ROOT="$HOME/.pyenv"
-#command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
+path+=~/.pyenv/bin
 
 # Install and setup pulumi
 if [ ! -d ~/.pulumi ]; then
     echo "Installing pulumi.."
     curl -fsSL https://get.pulumi.com | sh
 fi
-export PATH=$PATH:$HOME/.pulumi/bin
+path+=~/.pulumi/bin
 
 ###
 # Aliases, funcs, etc.
@@ -226,4 +213,35 @@ fi
 
 if [ -f "${HOME}/.zshrc.local-post-init" ]; then 
     source "${HOME}/.zshrc.local-post-init"
+fi
+
+###
+# Special tools
+###
+if [ -f "${HOME}/Projects/Virtual-Finland/vfd-tools/scripts/shell-setup.sh" ]; then
+    source ${HOME}/Projects/Virtual-Finland/vfd-tools/scripts/shell-setup.sh
+fi
+
+# Witdev
+if [ -f ${HOME}/Projects/witdev/shell-commands.sh ]; then
+    source ${HOME}/Projects/witdev/shell-commands.sh
+fi
+
+# TMUX auto attach if local session and tmux exists
+if [ "$SESSION_TYPE" = "local/sh" ]; then
+    SESSION_NAME="local"
+    if (( $+commands[tmux] )); then
+        # if tmux session exists
+        if [ -n "$TMUX" ]; then
+            # if tmux session is not attached
+            if [ -z "$TMUX_PANE" ]; then
+                # attach to tmux session
+                tmux attach-session -t "$SESSION_NAME"
+            fi
+        else
+            # if tmux session does not exist
+            # create new tmux session
+            tmux new-session -s "$SESSION_NAME" >/dev/null 2>&1
+        fi
+    fi
 fi
