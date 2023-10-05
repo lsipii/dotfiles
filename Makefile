@@ -12,7 +12,7 @@ install-base:
 	./scripts/install-oh-my-zsh.sh
 	./scripts/install-oh-my-tmux.sh
 
-ensure-default-ssh-key:
+ensure-ssh-key:
 	./scripts/ensure-default-ssh-key.sh
 
 install-base-links:
