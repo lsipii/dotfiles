@@ -30,4 +30,7 @@ sudo apt-get update && sudo apt-get -y install \
     jq \
     fish
 
+# WSL
+sudo apt-get install wslu -y
+
 mkdir -p ~/.local/bin/
