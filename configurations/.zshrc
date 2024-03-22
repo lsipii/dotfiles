@@ -210,7 +210,9 @@ fi
 ###
 # Post-init
 ###
-
+if [ -f "${HOME}/.zshrc.local" ]; then 
+    source "${HOME}/.zshrc.local"
+fi
 if [ -f "${HOME}/.zshrc.local-post-init" ]; then 
     source "${HOME}/.zshrc.local-post-init"
 fi
@@ -245,3 +247,16 @@ if [ "$SESSION_TYPE" = "local/sh" ]; then
         fi
     fi
 fi
+
+# add Pulumi to the PATH
+export PATH=$PATH:$HOME/.pulumi/bin
+
+# bun completions
+[ -s "/home/lsipii/.bun/_bun" ] && source "/home/lsipii/.bun/_bun"
+
+# Git editor
+export GIT_EDITOR=vim
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

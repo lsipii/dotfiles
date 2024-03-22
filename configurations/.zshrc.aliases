@@ -71,5 +71,9 @@ function docker-cleanup(){
     docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
 }
 
+function logs() {
+    docker compose logs --tail="200" -f
+}
+
 # ruuviget
 alias ruuviget="docker compose --project-directory ~/Projects/ruuviget run commandline-client"
