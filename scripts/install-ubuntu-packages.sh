@@ -28,7 +28,8 @@ sudo apt-get update && sudo apt-get -y install \
     sudo \
     gnupg2 \
     jq \
-    fish
+    fish \
+    wl-clipboard
 
 # WSL
 sudo apt-get install wslu -y
